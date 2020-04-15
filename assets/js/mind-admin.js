@@ -8,8 +8,6 @@
     type: 'mapbox_polygon'
   });
 
-
-
   $(document).ready(function(){
 
     for(var i = 0; i < fields.length; i++) {
@@ -82,26 +80,6 @@
     }
   })
 
-
-  $(document).on('click', '.loadGeoFromOthers', function(e) {
-    console.log(e);
-    // $.ajax({
-    //   url : acf.data.ajax_url,
-    //   type : 'post',
-    //   data : {
-    //     action : 'mindpolygon_loadfromothers',
-    //     postid : acf.data.post_id,
-    //     field : field
-    //   },
-    //   success: function(response) {
-    //     // console.log(response);
-    //   },
-    //   error: function (response) {
-    //     console.log('An error occurred.');
-    //     console.log(response);
-    //   },
-    // });
-  });
 
 
 

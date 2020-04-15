@@ -27,18 +27,57 @@ class mindMapboxPolygonAjax {
       $features = $_POST['data']['features'];
       $data = $_POST['data'];
       if($features) :
+        $center = $this->findcenter($features);
         foreach ($features as $key => $feature) :
-          $feature['properties'] = array('' => '');
+          $properties = array(
+            'title' => get_the_title($_POST['postid']),
+            'description' => get_the_excerpt($_POST['postid']),
+            'collectionCenter' => $center
+          );
+          $feature['properties'] = apply_filters( MINDPOLYGON_PREPEND . 'feature_properties', $properties, $_POST['postid']);
           $features[$key] = $feature;
         endforeach;
       endif;
       $data['features'] = $features;
-
+      update_field($_POST['field'], $data, $_POST['postid']);
       $update = update_post_meta($_POST['postid'], $_POST['field'], $data);
-
       return json_encode($update, JSON_FORCE_OBJECT);
     }
     wp_send_json_error();
+  }
+
+  public function findcenter($features) {
+    $lats = array();
+    $lngs = array();
+    foreach ($features as $f => $feature) :
+      if($feature['geometry']['type'] == 'Polygon') :
+        foreach ($feature['geometry']['coordinates'] as $c => $coordinates) :
+          foreach ($coordinates as $a => $array) :
+            $lats[] = floatval($array[0]);
+            $lngs[] = floatval($array[1]);
+          endforeach;
+        endforeach;
+      elseif($feature['geometry']['type'] == 'Point') :
+        $lats[] = floatval($features[$f]['geometry']['coordinates'][0]);
+        $lngs[] = floatval($features[$f]['geometry']['coordinates'][1]);
+      elseif($feature['geometry']['type'] == 'LineString') :
+        foreach ($feature['geometry']['coordinates'] as $c => $coordinate) :
+          $lats[] = floatval($coordinate[0]);
+          $lngs[] = floatval($coordinate[1]);
+        endforeach;
+      endif;
+    endforeach;
+    $lats = array_filter($lats);
+    if(count($lats)) {
+      $lats = array_sum($lats)/count($lats);
+    }
+    $lngs = array_filter($lngs);
+    if(count($lngs)) {
+      $lngs = array_sum($lngs)/count($lngs);
+    }
+    $return = array(floatval($lats), floatval($lngs));
+
+    return $return;
   }
 
   public function getgeo() {
@@ -49,6 +88,7 @@ class mindMapboxPolygonAjax {
 
 
         //This is hacky, but we have to loop through all the coordinates and turn them into floatval, they cannot be strings.
+        //Might as well do some other things here too. Let's get the center of all features.
         foreach ($features as $f => $feature) :
           if($feature['geometry']['type'] == 'Polygon') :
             foreach ($feature['geometry']['coordinates'] as $c => $coordinates) :
