@@ -247,10 +247,9 @@ if ( ! class_exists( 'mind_acf_field_mapbox_gl_js_polygon' ) ) {
 			// vars
 			$url     = $this->settings['url'];
 			$version = $this->settings['version'];
-
 			// Register & include JS
-			wp_enqueue_script( 'acf-mind-mapbox-gl-js', '//api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js', array( 'acf-input' ), $version, true );
-			wp_enqueue_script( 'acf-mind-mapbox-gl-draw-js', 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js', array( 'acf-input', 'acf-mapbox-gl-js'), $version, true );
+			wp_enqueue_script( 'acf-mind-mapbox-gl-js', '//api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js', array( 'acf-input', 'jquery' ), $version, true );
+			wp_enqueue_script( 'acf-mind-mapbox-gl-draw-js', 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js', array( 'acf-input', 'acf-mind-mapbox-gl-js'), $version, true );
 			wp_enqueue_script( 'acf-mind-mind-mapbox-custom-js', "{$url}assets/js/mind-admin.js", array( 'acf-input', 'acf-mind-mapbox-gl-js', 'acf-mind-mapbox-gl-draw-js' ), $version, true );
 
 
@@ -258,6 +257,7 @@ if ( ! class_exists( 'mind_acf_field_mapbox_gl_js_polygon' ) ) {
 			wp_enqueue_style( 'acf-mind-mapbox-gl-css', '//api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css', array( 'acf-input' ), $version );
 			wp_enqueue_style( 'acf-mind-mapbox-gl-draw-css', 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css', array( 'acf-input' ), $version );
 			wp_enqueue_style( 'acf-mind-mapbox-custom-css', "{$url}assets/css/mapbox-gl-js.css", array( 'acf-input' ), $version );
+
 		}
 
 		/**

@@ -7,9 +7,9 @@
   var fields = acf.findFields({
     type: 'mapbox_polygon'
   });
-
+  
   $(document).ready(function(){
-
+    console.log('aworking');
     for(var i = 0; i < fields.length; i++) {
       var map = new mapboxgl.Map({
         container: 'mapPolygon_' + fields[i].dataset.key,
