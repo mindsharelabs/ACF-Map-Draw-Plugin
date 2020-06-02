@@ -1,7 +1,6 @@
 /**
 * Custom Mapbox Polygon JS
 */
-lo
 (function($) {
   mapboxgl.accessToken = acf.data.mapbox_api;
   var fields = acf.findFields({
