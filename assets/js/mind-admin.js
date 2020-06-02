@@ -51,7 +51,7 @@
         map.on('draw.create', turoUpdateGeo);
         map.on('draw.delete', turoUpdateGeo);
         map.on('draw.update', turoUpdateGeo);
-        document.on('click', 'button.editor-post-publish-button', turoUpdateGeo);
+        $(document).on('click', 'button.editor-post-publish-button', turoUpdateGeo);
 
         function turoUpdateGeo() {
           var data = draw.getAll();
