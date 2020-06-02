@@ -4,11 +4,11 @@
 
 #map, #mapPolygon, .polymap, .acf-field-mapbox-polygon {
     width: 100%;
-    height: 500px;
+    height: 700px;
 }
 .acf-mapbox-polygon {
   width: 100%;
-  height: 500px;
+  height: 800px;
 }
 .mapboxgl-canvas-container, .mapboxgl-canvas {
   width: 100%;

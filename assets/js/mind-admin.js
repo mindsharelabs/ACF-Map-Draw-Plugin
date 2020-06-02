@@ -1,15 +1,14 @@
 /**
 * Custom Mapbox Polygon JS
 */
-
+lo
 (function($) {
   mapboxgl.accessToken = acf.data.mapbox_api;
   var fields = acf.findFields({
     type: 'mapbox_polygon'
   });
-  
+
   $(document).ready(function(){
-    console.log('aworking');
     for(var i = 0; i < fields.length; i++) {
       var map = new mapboxgl.Map({
         container: 'mapPolygon_' + fields[i].dataset.key,
@@ -41,6 +40,7 @@
             meta_key : field
           },
           success: function(response) {
+            console.log(response.data);
             draw.add(response.data);
           },
           error: function (response) {
@@ -52,10 +52,10 @@
         map.on('draw.create', turoUpdateGeo);
         map.on('draw.delete', turoUpdateGeo);
         map.on('draw.update', turoUpdateGeo);
+        document.on('click', 'button.editor-post-publish-button', turoUpdateGeo);
 
         function turoUpdateGeo() {
           var data = draw.getAll();
-          console.log(field);
           $.ajax({
             url : acf.data.ajax_url,
             type : 'post',

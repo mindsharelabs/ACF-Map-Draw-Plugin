@@ -34,7 +34,8 @@ class mindMapboxPolygonAjax {
             'description' => get_the_excerpt($_POST['postid']),
             'collectionCenter' => $center
           );
-          $feature['properties'] = apply_filters( MINDPOLYGON_PREPEND . 'feature_properties', $properties, $_POST['postid']);
+          $properties = apply_filters( MINDPOLYGON_PREPEND . 'feature_properties', $properties, $_POST['postid']);
+          $feature['properties'] = $properties;
           $features[$key] = $feature;
         endforeach;
       endif;
