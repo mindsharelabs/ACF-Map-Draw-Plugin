@@ -2,7 +2,7 @@
 * Custom Mapbox Polygon JS
 */
 (function($) {
-  mapboxgl.accessToken = acf.data.mapbox_api;
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGhlamFtZXN3aWxsaWFtIiwiYSI6ImNrOHZ3N2NzdTBoODEzbnBreXBxaWprMGYifQ.e4DQGcfCXLf22Q7eG_apYw';
   var fields = acf.findFields({
     type: 'mapbox_polygon'
   });
