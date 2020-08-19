@@ -3,7 +3,7 @@
 /*
 Plugin Name: Advanced Custom Fields: Mapbox Polygon Field
 Description: Adds a ACF field that allows the input and display of a polygon on a Mapbox map.
-Version: 1.1.5
+Version: 1.1.6
 Author: Mindshare Labs, Inc
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
