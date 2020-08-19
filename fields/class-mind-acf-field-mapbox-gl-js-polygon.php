@@ -239,7 +239,7 @@ if ( ! class_exists( 'mind_acf_field_mapbox_gl_js_polygon' ) ) {
 		function input_admin_enqueue_scripts() {
 			$api = apply_filters( 'acf/fields/mapbox/api', array() );
 			acf_localize_data(array(
-				'mapbox_api' => $api['key'],
+				'mapbox_api' => 'pk.eyJ1IjoidGhlamFtZXN3aWxsaWFtIiwiYSI6ImNrOHZ3N2NzdTBoODEzbnBreXBxaWprMGYifQ.e4DQGcfCXLf22Q7eG_apYw',
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'post_id' => get_the_id(),
 				'post_meta' => json_encode(get_post_meta(get_the_id()))
